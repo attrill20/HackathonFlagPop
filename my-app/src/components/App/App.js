@@ -1,6 +1,9 @@
 import React,{useState} from "react";
 import './App.css';
-import FlagViewer from '../FlagViewer/flag';
+import PopViewer from "../PopViewer/pop";
+import ButtonHigher from "../ButtonHigher/Higher";
+import ButtonLower from "../ButtonLower/Lower";
+//import FlagViewer from '../FlagViewer/flag';
 
 function App() {
   const [randomValue, setRandomValue]= useState((Math.floor(Math.random() * 219) + 1));
@@ -21,9 +24,10 @@ function App() {
       <header className="App-header">
         <p>Welcome to our world game!</p>
         <div>
-          <FlagViewer props={randomValue} />
+          <PopViewer props={randomValue} />
             <div className="button-container">
-          <button className="button" onClick = {handleClick}>Click for Random Country!</button>
+          <ButtonHigher className="Higher"  handleClick={handleClick}></ButtonHigher>
+          <ButtonLower  className="Lower"  handleClick={handleClick}></ButtonLower>
            </div>
         </div>
         

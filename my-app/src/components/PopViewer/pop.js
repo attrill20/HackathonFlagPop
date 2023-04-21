@@ -12,17 +12,21 @@ function PopViewer({props}) {
             "https://countriesnow.space/api/v0.1/countries/population"
           );
           const data = await res.json();
-          setPop(data.data[code].populationCounts); // check this
+          setPop(data.data[code]); // check this
         }
         popFetch();
       }, [code]);
 
 console.log(pop);
+const newArray=[]
 
     return (
         <div>
         {pop && (
-            <p> {pop[0].value} </p>
+          <>
+          <p>{pop.country}</p>
+            <p> {pop.populationCounts[58].value} </p>
+            </>
             )}
         </div>
     );
