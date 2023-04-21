@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PopViewer from '../PopViewer/pop';
 
 function FlagViewer({props}) {
   const [country, setCountry] = useState();
@@ -21,6 +22,7 @@ function FlagViewer({props}) {
           <h1>Country: {country.name}</h1>
           <h2>Country code: {country.iso3}</h2>
           <img src={country.flag} alt="Flag" />
+          <PopViewer props={props} />
         </>
       )}
     </div>
