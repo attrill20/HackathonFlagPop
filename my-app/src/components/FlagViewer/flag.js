@@ -1,48 +1,30 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 
+function FlagViewer({props}) {
+  const [country, setCountry] = useState();
 
-
-function FlagViewer(props){
-
-    const [country,setCountry]=useState()
-
-   const randomNum=(Math.floor(Math.random() * 219) + 1)
-
-    useEffect(()=>{
-        async function countryFetch(){
-            const res = await fetch(`https://countriesnow.space/api/v0.1/countries/flag/images/`);
-            const data =await res.json();
-            setCountry(data);
-            console.log(country);
-    
-        }
-        countryFetch()
+  useEffect(() => {
+    async function countryFetch() {
+      const res = await fetch(
+        "https://countriesnow.space/api/v0.1/countries/flag/images/"
+      );
+      const data = await res.json();
+      setCountry(data.data[props]);
     }
-    ,[props]);
-    return (
-        <div>
-            {country &&(
-                <>
-             <h1>Country:{country.data[randomNum].name}</h1> 
-             <img src={country.data[randomNum].flag}/>
+    countryFetch();
+  }, [props]);
+
+  return (
+    <div>
+      {country && (
+        <>
+          <h1>Country: {country.name}</h1>
+          <h2>Country code: {country.iso3}</h2>
+          <img src={country.flag} alt="Flag" />
         </>
-              )}
-        </div>
-    )
-
+      )}
+    </div>
+  );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default FlagViewer;
